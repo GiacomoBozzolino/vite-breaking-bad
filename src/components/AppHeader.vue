@@ -4,10 +4,20 @@
     }
 </script>
 <template lang="">
-    <div>
-        header
-    </div>
+    <header>
+        <div class="container">
+            
+        </div>
+
+    </header>
 </template>
-<style lang="">
-    
+
+
+<style lang="scss" scoped>
+@use '../styles/partials/_variables' as *;
+
+    header{
+        background-color:$background_red ;
+        height: 150px;
+    }
 </style>
