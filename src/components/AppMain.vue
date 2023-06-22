@@ -6,7 +6,10 @@
 <template lang="">
     <main>
         <div class="container" >
-            <div class="card_container">
+            <div class="card_container d-flex align-items-center justify-content-center">
+                <div class="inner_container">
+
+                </div>
 
             </div>
 
@@ -28,6 +31,12 @@
         height:700px;
         width: 100%;
         border-radius: 30px;
+        .inner_container{
+            background-color: $background_grey;
+            width: 95%;
+            height: 90%;
+            
+        }
         
     }
     
