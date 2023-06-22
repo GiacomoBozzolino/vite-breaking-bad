@@ -1,11 +1,25 @@
     <script>
     import AppHeader  from './components/AppHeader.vue';
     import AppMain  from './components/AppMain.vue';
+    import axios from 'axios';
+
+    import {store} from './store.js';
 
     export default {
       components:{
         AppHeader,
         AppMain
+      },
+      data() {
+        return {
+          store
+        }
+      },
+      mounted (){
+        axios.get(store.apiUrl).then((response) => {
+          store.pokedex = response.data.docs
+          console.log(response.data.docs)
+        })
       }
       
     }
