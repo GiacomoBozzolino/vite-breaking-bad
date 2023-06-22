@@ -10,9 +10,25 @@ import {store} from '../store.js';
         },
         data() {
             return {
-                store
+                store,
+                
             }
         },
+
+        methods:{
+            background(color){
+                if(color === 'Grass'){
+                   color = 'green'
+                } else if (color === 'Fire'){
+                   color = 'red'
+                } else {
+                   color = 'blue'
+                }
+                return color
+
+            }
+
+        }
         
     }
 </script>
@@ -21,8 +37,8 @@ import {store} from '../store.js';
         <div class="container" >
             <div class="card_container d-flex align-items-center justify-content-center">
                 <div class="inner_container row">
-                    <div v-for="(pokemon, index) in store.pokedex" :key="index" class="col-3">
-                        <AppCardList :myPokemon="pokemon"/>
+                    <div v-for="(pokemon, index) in store.pokedex" :key="index"  class="col-3">
+                        <AppCardList :myPokemon="pokemon" :class="background(store.pokedex[index].type1)" />
 
                     </div>
                     <!-- creo una props -->
@@ -43,7 +59,16 @@ import {store} from '../store.js';
         background-color:$background_red;
         height: calc(100vh - 150px);  
     }
+    .green{
+        background-color: #DEFDE0;
+    }
+    .red{
+        background-color: #FDDFDF;
+    }
 
+    .blue{
+        background-color: #DEF3FD;
+    }
     .card_container{
         background-color: $background_white;
         height:75vh;
