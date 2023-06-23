@@ -1,32 +1,39 @@
 <script>
+    import AppTypeSearch from '../components/AppTypeSearch.vue'
+    import {store} from '../store.js';
+    import axios from 'axios';
     export default {
+
         data() {
             return {
-                pokemonType:[
-                'Bug',
-                'Dark',
-                'Dragon',
-                'Electric',
-                'Fairy',
-                'Fighting',
-                'Fire',
-                'Flying',
-                'Ghost',
-                'Grass',
-                'Ground',
-                'Ice',
-                'Normal',
-                'Poison',
-                'Psychic',
-                'Rock',
-                'Steel',
-                'Water'
-                ]
-                
+                store,
             }
         },
+        components:{
+            AppTypeSearch,
+            
+
+        },
+        mounted (){
+
+            this.getType()
+        
+        },
+
+        methods: {
+            getType(){
+                console.log(store.searchType)
+                axios.get(store.apiUrl).then((response) => {
+                store.pokedex = response.data.docs
+                console.log(response.data.docs)
+                console.log('emit funzionante')
+        })
+            },
+        }
         
     }
+
+
 </script>
 <template lang="">
     <header>
@@ -43,10 +50,7 @@
                     </div>
                 </div>
                 <div>
-                    <select name="type" id="type">
-                        <option value="" selected>All</option>
-                        <option  v-for="(type, index) in pokemonType" :key="index" :value="type">{{type}}</option>
-                    </select>
+                    <AppTypeSearch @search="getType" />
                 </div>
             </div>   
         </div>
