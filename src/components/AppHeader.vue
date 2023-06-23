@@ -1,22 +1,55 @@
 <script>
     export default {
+        data() {
+            return {
+                pokemonType:[
+                'Bug',
+                'Dark',
+                'Dragon',
+                'Electric',
+                'Fairy',
+                'Fighting',
+                'Fire',
+                'Flying',
+                'Ghost',
+                'Grass',
+                'Ground',
+                'Ice',
+                'Normal',
+                'Poison',
+                'Psychic',
+                'Rock',
+                'Steel',
+                'Water'
+                ]
+                
+            }
+        },
         
     }
 </script>
 <template lang="">
     <header>
         <div class="container">
-            <div class="d-flex pt-2">
-                <div class=pt-3>
-                    <button id="button-big"></button>
+            <div class="d-flex pt-2 justify-content-between">
+                <div class="d-flex">
+                    <div class=pt-3>
+                        <button id="button-big"></button>
+                    </div>
+                    <div>
+                        <button id="button-1"></button>
+                        <button id="button-2"></button>
+                        <button id="button-3"></button>
+                    </div>
                 </div>
-                <button id="button-1"></button>
-                <button id="button-2"></button>
-                <button id="button-3"></button>
-            </div>
-            
+                <div>
+                    <select name="type" id="type">
+                        <option value="" selected>All</option>
+                        <option  v-for="(type, index) in pokemonType" :key="index" :value="type">{{type}}</option>
+                    </select>
+                </div>
+            </div>   
         </div>
-
     </header>
 </template>
 
@@ -29,6 +62,8 @@
         background-color:$background_red ;
         height: 150px;
     }
+
+
 
     #button-big{
         @include roundButton (80px, 80px, rgb(0, 21, 255))

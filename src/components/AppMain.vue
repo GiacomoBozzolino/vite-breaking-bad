@@ -37,7 +37,7 @@ import {store} from '../store.js';
         <div class="container" >
             <div class="card_container d-flex align-items-center justify-content-center">
                 <div class="inner_container row">
-                    <div v-for="(pokemon, index) in store.pokedex" :key="index"  class="col-3">
+                    <div v-for="(pokemon, index) in store.pokedex" :key="index"  class="col-sm-12 col-md-6 col-lg-3">
                         <AppCardList :myPokemon="pokemon" :class="background(store.pokedex[index].type1)" />
 
                     </div>
