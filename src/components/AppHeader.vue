@@ -1,5 +1,5 @@
 <script>
-    import AppTypeSearch from '../components/AppTypeSearch.vue'
+    // import AppTypeSearch from '../components/AppTypeSearch.vue'
     import {store} from '../store.js';
     import axios from 'axios';
     export default {
@@ -10,26 +10,11 @@
             }
         },
         components:{
-            AppTypeSearch,
+            // AppTypeSearch,
             
 
         },
-        mounted (){
-
-            this.getType()
         
-        },
-
-        methods: {
-            getType(){
-                console.log(store.searchType)
-                axios.get(store.apiUrl).then((response) => {
-                store.pokedex = response.data.docs
-                console.log(response.data.docs)
-                console.log('emit funzionante')
-        })
-            },
-        }
         
     }
 
@@ -50,7 +35,10 @@
                     </div>
                 </div>
                 <div>
-                    <AppTypeSearch @search="getType" />
+                    <select class="form-select select-bar mt-5" aria-label="Default select example" v-model="store.selectedType" @change="$emit('changeType')"  >
+                        <option value="" selected>All</option>
+                        <option v-for="(type, index) in store.pokemon_types" :key="index" :value="type" >{{type}}</option>
+                    </select>
                 </div>
             </div>   
         </div>
