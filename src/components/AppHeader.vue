@@ -7,6 +7,26 @@
         data() {
             return {
                 store,
+                pokemon_types: [
+                    "Bug",
+                    "Dark",
+                    "Dragon",
+                    "Electric",
+                    "Fairy",
+                    "Fighting",
+                    "Fire",
+                    "Flying",
+                    "Ghost",
+                    "Grass",
+                    "Ground",
+                    "Ice",
+                    "Normal",
+                    "Poison",
+                    "Psychic",
+                    "Rock",
+                    "Steel",
+                    "Water"
+                ],
             }
         },
         components:{
@@ -37,7 +57,7 @@
                 <div>
                     <select class="form-select select-bar mt-5" aria-label="Default select example" v-model="store.selectedType" @change="$emit('changeType')"  >
                         <option value="" selected>All</option>
-                        <option v-for="(type, index) in store.pokemon_types" :key="index" :value="type" >{{type}}</option>
+                        <option v-for="(type, index) in pokemon_types" :key="index" :value="type" >{{type}}</option>
                     </select>
                 </div>
             </div>   

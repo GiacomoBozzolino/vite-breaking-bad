@@ -1,9 +1,20 @@
 <script>
+import {store} from '../store.js';
 
     export default {
         // recupero la props
     props:{
         myPokemon:Object,
+    },
+    data() {
+        return {
+            store,
+        }
+    },
+    computed:{
+        bgColor(){
+            return store.pokemon_color[this.myPokemon.type1]
+        }
     }
     }
   
@@ -12,7 +23,7 @@
 </script>
 
 <template lang="">
-    <div class="poke-card text-center m-3">
+    <div class="poke-card text-center m-3" :style="`background-color: ${bgColor}`">
         <img :src="myPokemon.imageUrl" alt="">
         <div >{{myPokemon.number}}</div>
         <div class="fw-bold">{{myPokemon.name}}</div>
