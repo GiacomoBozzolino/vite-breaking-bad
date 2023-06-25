@@ -24,6 +24,10 @@ export default {
         getPokemonType(){
               
            store.newUrl  = store.apiUrl 
+           if(store.searchText !==''){
+            store.newUrl += `&q[name]=${store.searchText}`
+           }
+
           if(store.selectedType !== ''){
              store.newUrl += `&eq[type1]=${store.selectedType}`
               console.log(store.selectedType)
