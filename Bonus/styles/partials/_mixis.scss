@@ -1,0 +1,9 @@
+@mixin roundButton ($height:'', $width:'',$background:''){
+    height: $height ;
+    width: $width;
+    background-color: $background;
+    border-radius:50%;
+    border: 5px solid white;
+    margin: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}

@@ -1,12 +1,15 @@
 <script>
 import AppCardList from '../components/AppCardList.vue';
+import AppLoader from './AppLoader.vue';
 // importo store dal file store.js
 import {store} from '../store.js'; 
 
     export default {
         components:{
             AppCardList,
+            AppLoader,
             store,
+
         },
         data() {
             return {
@@ -16,19 +19,23 @@ import {store} from '../store.js';
         },
 
         
+        
     }
 </script>
 <template lang="">
     <main>
         <div class="container" >
             <div class="card_container d-flex align-items-center justify-content-center">
-                <div class="inner_container row">
-                    <div v-for="(pokemon, index) in store.pokedex" :key="index"  class="col-sm-12 col-md-6 col-lg-3">
-                        <AppCardList :myPokemon="pokemon"  />
-
+               
+                    <div v-if="store.loading === false" class="inner_container row">
+                        <div v-for="(pokemon, index) in store.pokedex" :key="index"  class="col-sm-12 col-md-6 col-lg-3">
+                            <AppCardList :myPokemon="pokemon"  />
+    
+                        </div>
                     </div>
-                 
-                </div>
+                    <!-- Importo il loader -->
+                    <AppLoader v-else/>
+               
 
             </div>
 
@@ -44,16 +51,7 @@ import {store} from '../store.js';
         background-color:$background_red;
         height: calc(100vh - 150px);  
     }
-    .green{
-        background-color: #DEFDE0;
-    }
-    .red{
-        background-color: #FDDFDF;
-    }
 
-    .blue{
-        background-color: #DEF3FD;
-    }
     .card_container{
         background-color: $background_white;
         height:75vh;

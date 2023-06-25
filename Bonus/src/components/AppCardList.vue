@@ -5,7 +5,6 @@ import {store} from '../store.js';
         // recupero la props
     props:{
         myPokemon:Object,
-      
     },
     data() {
         return {
