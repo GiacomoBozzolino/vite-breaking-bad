@@ -42,7 +42,7 @@ export default {
 
 <template lang="">
 <div>
-<AppHeader @change="getPokemonType"/>
+<AppHeader @changeType="getPokemonType"/>
 
 <AppMain/>
 </div>

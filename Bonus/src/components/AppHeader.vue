@@ -31,9 +31,15 @@
         },
         components:{
             // AppTypeSearch,
-            
-
         },
+        methods:{
+            resetSearch(){
+                store.searchText = '';
+                store.selectedType = '';
+                this.$emit('changeType')
+
+            }
+        }
         
         
     }
@@ -54,13 +60,22 @@
                         <button id="button-3"></button>
                     </div>
                 </div>
-                <div>
-                    <input type="text" id="search" v-model="store.searchText" placeholder=" Search your Pokemon..." @keyup.enter="$emit('changeType')">
-                    <select class="form-select select-bar mt-5" aria-label="Default select example" v-model="store.selectedType"   >
-                        <option value="" selected>All</option>
-                        <option v-for="(type, index) in pokemon_types" :key="index" :value="type" >{{type}}</option>
-                    </select>
-                    <button @clock="$emit('changeType')">Search</button>
+                <div class="d-flex align-items-center">
+                    <div class="p-2">
+                        <input class="form-control mr-sm-2" type="text" id="search" v-model="store.searchText" placeholder=" Search your Pokemon..." >
+                    </div>
+                    <div class="p-2">
+                        <select class="form-select select-bar "  v-model="store.selectedType"   >
+                            <option value="" selected>All</option>
+                            <option v-for="(type, index) in pokemon_types" :key="index" :value="type" >{{type}}</option>
+                        </select>
+                    </div>
+                    <div class="p-2">
+                        <button class="btn btn-primary" @click="$emit('changeType')">Search</button>
+                    </div>
+                    <div class="p-2">
+                        <button class="btn btn-warning" @click="resetSearch">Reset </button>
+                    </div>
                 </div>
             </div>   
         </div>

@@ -23,22 +23,36 @@ export default {
     methods:{
         getPokemonType(){
               
-           store.newUrl  = store.apiUrl 
+           let newUrl  = store.apiUrl 
            if(store.searchText !==''){
-            store.newUrl += `&q[name]=${store.searchText}`
+            newUrl += `?q[name]=${store.searchText}`
            }
 
           if(store.selectedType !== ''){
-             store.newUrl += `&eq[type1]=${store.selectedType}`
+            if(store.searchText !== ''){
+              newUrl += '&';
+            } 
+            else{
+              newUrl += '?'
+            }
+             newUrl += `eq[type1]=${store.selectedType}`
               console.log(store.selectedType)
-          }
+          } 
+
+
+            axios.get(newUrl).then((response) => {
+                store.pokedex = response.data.docs;
+                store.loading = false
+                this.searchText = '';
+                this.selectedType = '';
+                console.log(response.data.docs)
+                  console.log('emit funzionante')
+              })
+
+        
           
-          axios.get(store.newUrl).then((response) => {
-              store.pokedex = response.data.docs;
-              store.loading = false
-              console.log(response.data.docs)
-            console.log('emit funzionante')
-          })
+          
+          
         },
 }
 
@@ -47,7 +61,7 @@ export default {
 
 <template lang="">
 <div>
-<AppHeader @change="getPokemonType"/>
+<AppHeader @changeType="getPokemonType"/>
 
 <AppMain/>
 </div>
